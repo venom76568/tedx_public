@@ -18,9 +18,9 @@ const Speakers = () => {
       className="h-full flex flex-col justify-center items-center gap-10 bg-black"
     >
       <span className="text-5xl text-white">Speakers</span>
-      {/* <span className="text-3xl text-red-600">Coming soon</span> */}
+      <span className="text-3xl text-red-600">Coming soon</span>
 
-      <Carousel className="hidden lg:block h-full mx-4 "
+      {/* <Carousel className="hidden lg:block h-full mx-4 "
         showIndicators={false}
         showStatus={false}
         showThumbs={false}
@@ -64,7 +64,7 @@ const Speakers = () => {
         {/* <div className="px-10">
           <Image src={tridha} alt="Tridha" />
         </div> */}
-      </Carousel>
+      {/* </Carousel>
       <Carousel
         className="lg:hidden"
         showIndicators={false}
@@ -110,7 +110,7 @@ const Speakers = () => {
         {/* <div>
           <Image src={tridha_card} alt="Tridha" />
         </div> */}
-      </Carousel>
+      {/* </Carousel> */}  
     </div>
   );
 };
