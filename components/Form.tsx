@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React from "react";
 import { Work_Sans } from "next/font/google";
 import { classNames } from "./utils/utils";
@@ -8,21 +8,21 @@ import { Toast } from "./utils/Notification";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 const work_sans = Work_Sans({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
-})
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const SUBMIT_FORM = gql`
-	mutation submitForm($formInput: FormInput!) {
-		createForm(createFormInput: $formInput) {
-			code
-			message
-			data {
-				id
-				name
-			}
-		}
-	}
+  mutation submitForm($formInput: FormInput!) {
+    createForm(createFormInput: $formInput) {
+      code
+      message
+      data {
+        id
+        name
+      }
+    }
+  }
 `;
 
 type RegisterForm = {
@@ -33,7 +33,7 @@ type RegisterForm = {
   college?: string;
   id_type: string;
   others?: string;
-}
+};
 
 const initForm: RegisterForm = {
   name: "",
@@ -43,14 +43,14 @@ const initForm: RegisterForm = {
   college: "",
   id_type: "",
   others: "",
-}
+};
 
-const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 const Form = () => {
-  const router = useRouter()
-  const toastID = "formSubmit"
-  const queryPoint = "https://tedx-backend-1.onrender.com/"
+  const router = useRouter();
+  const toastID = "formSubmit";
+  const queryPoint = "https://tedx-backend-6x4f.onrender.com";
   const [form, setForm] = React.useState(initForm);
 
   const mutation = useMutation({
@@ -60,13 +60,13 @@ const Form = () => {
         formInput: form,
       });
       return data;
-    }
-  })
+    },
+  });
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const resp: any = await mutation.mutateAsync(form)
+      const resp: any = await mutation.mutateAsync(form);
       toast.loading("Submitting Form", {
         toastId: toastID,
         position: "top-right",
@@ -78,7 +78,7 @@ const Form = () => {
         progress: undefined,
         theme: "colored",
       });
-      const code = resp.createForm.code
+      const code = resp.createForm.code;
       if (code == 201) {
         await delay(1000);
         toast.update(toastID, {
@@ -92,10 +92,10 @@ const Form = () => {
           progress: undefined,
           theme: "colored",
           type: "success",
-        })
+        });
         setForm(initForm);
         await delay(1000);
-        router.push("/success")
+        router.push("/success");
       } else {
         toast.update(toastID, {
           render: "Registration Failed",
@@ -109,7 +109,7 @@ const Form = () => {
           progress: undefined,
           theme: "colored",
           type: "error",
-        })
+        });
       }
     } catch (error) {
       toast.update(toastID, {
@@ -124,30 +124,36 @@ const Form = () => {
         progress: undefined,
         theme: "colored",
         type: "error",
-      })
+      });
     }
-    toast.dismiss(toastID)
+    toast.dismiss(toastID);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setForm(pForm => {
-    const { name, value } = e.target;
-    if (name === "affiliation" && value === "vnit") {
-      return {
-        ...pForm,
-        affiliation: value,
-        id_type: "vnit"
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) =>
+    setForm((pForm) => {
+      const { name, value } = e.target;
+      if (name === "affiliation" && value === "vnit") {
+        return {
+          ...pForm,
+          affiliation: value,
+          id_type: "vnit",
+        };
+      } else {
+        return {
+          ...pForm,
+          [name]: value,
+        };
       }
-    } else {
-      return {
-        ...pForm,
-        [name]: value,
-      }
-    }
-  })
+    });
 
   return (
     <div className="min-h-screen flex justify-center items-start md:items-center bg-gray-800 bg-[url('/assets/background.png')] bg-cover bg-center bg-blend-hard-light">
-      <form onSubmit={handleSubmit} className={classNames("w-full max-w-2xl p-6", work_sans.className)}>
+      <form
+        onSubmit={handleSubmit}
+        className={classNames("w-full max-w-2xl p-6", work_sans.className)}
+      >
         <div className="h-full items-center justify-center gap-10 pt-10 md:pt-0">
           <div className="grid grid-cols-6 gap-8 lg:gap-12">
             <div className="col-span-6 grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-40 md:items-center">
@@ -213,8 +219,16 @@ const Form = () => {
                 Affiliation
               </label>
               <div className="block w-full bg-[#D9D9D9] col-span-4 rounded-md p-4 sm:text-md mr-2">
-                <select id="affiliation" name="affiliation" className="block w-full bg-[#D9D9D9] col-span-4 rounded-md mr-2 outline-none" value={form.affiliation} onChange={handleChange}>
-                  <option value="" hidden>Select Affiliation</option>
+                <select
+                  id="affiliation"
+                  name="affiliation"
+                  className="block w-full bg-[#D9D9D9] col-span-4 rounded-md mr-2 outline-none"
+                  value={form.affiliation}
+                  onChange={handleChange}
+                >
+                  <option value="" hidden>
+                    Select Affiliation
+                  </option>
                   <option value="non">Non-VNIT</option>
                   <option value="vnit">VNIT</option>
                 </select>
@@ -249,11 +263,20 @@ const Form = () => {
                 ID
               </label>
               <div className="block w-full bg-[#D9D9D9] col-span-4 rounded-md p-4 sm:text-md mr-2">
-                <select id="id_type" name="id_type" className="block w-full bg-[#D9D9D9] col-span-4 rounded-md mr-2 outline-none" value={form.id_type}
-                  disabled={form.affiliation === 'vnit'}
-                  onChange={handleChange}>
-                  <option value="" hidden>Select ID Type</option>
-                  <option value="vnit" hidden={form.affiliation == "non"} >VNIT Student ID</option>
+                <select
+                  id="id_type"
+                  name="id_type"
+                  className="block w-full bg-[#D9D9D9] col-span-4 rounded-md mr-2 outline-none"
+                  value={form.id_type}
+                  disabled={form.affiliation === "vnit"}
+                  onChange={handleChange}
+                >
+                  <option value="" hidden>
+                    Select ID Type
+                  </option>
+                  <option value="vnit" hidden={form.affiliation == "non"}>
+                    VNIT Student ID
+                  </option>
                   <option value="aadhar">Aadhar Card</option>
                   <option value="pan">PAN Card</option>
                   <option value="driving">Driving License</option>
@@ -261,7 +284,7 @@ const Form = () => {
                 </select>
               </div>
             </div>
-            {form.id_type === 'other' && (
+            {form.id_type === "other" && (
               <div className="col-span-6 grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-40 md:items-center">
                 <label
                   htmlFor="others"
@@ -282,16 +305,19 @@ const Form = () => {
             )}
             <div className="col-span-6 flex flex-col w-full justify-center items-center">
               <div className="text-red-500 mb-4 text-lg font-bold underline underline-offset-4">
-                <span>* Note: ID will be checked at entry on the event day</span>
+                <span>
+                  * Note: ID will be checked at entry on the event day
+                </span>
               </div>
-              <button className="w-1/2 mt-8 text-2xl px-4 py-3 rounded-md bg-red-500 text-white">Submit</button>
+              <button className="w-1/2 mt-8 text-2xl px-4 py-3 rounded-md bg-red-500 text-white">
+                Submit
+              </button>
             </div>
           </div>
         </div>
-      </form >
-    </div >
-  )
-}
-
+      </form>
+    </div>
+  );
+};
 
 export default Form;
