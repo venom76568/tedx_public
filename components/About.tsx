@@ -44,7 +44,7 @@ const About = () => {
                 titillium.className
               )}
             >
-              <div>
+              <div className="text-justify">
                 TED is a nonprofit organization devoted to Ideas Worth
                 Spreading, often in the form of short talks delivered by leading
                 thinkers and doers. Many of these talks are given at TED
@@ -54,7 +54,7 @@ const About = () => {
                 versions of TED Talks are published to TED Talks Daily,
                 available on all podcast platforms.
               </div>
-              <div>
+              <div className="text-justify">
                 TED&apos;s open and free initiatives for spreading ideas include
                 TED.com, where new TED Talk videos are posted daily; TEDx, which
                 licenses thousands of individuals and groups to host local,
@@ -85,7 +85,7 @@ const About = () => {
             />
             <div
               className={classNames(
-                "col-span-3 text-xl lg:text-2xl md:px-10",
+                "col-span-3 text-xl lg:text-2xl md:px-10 text-justify",
                 titillium.className
               )}
             >

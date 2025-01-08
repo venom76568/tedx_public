@@ -10,10 +10,20 @@ const Contact = () => {
         <div className="col-span-2 md:col-span-1 flex flex-col gap-7">
           <Image src={logo} alt="logo" className="self-center" />
           <div className="text-4xl font-black self-center">Contact Us</div>
-          <div className="grid grid-rows-3 gap-3 text-2xl justify-center lg:px-10 py-2">
-            <span>Organiser,Co-organiser</span>
-            <span> Tanvi Malode, Abhijeet Singh</span>
-            <span> +91 90967 79472, +91 85048 27156</span>
+          <div className="grid grid-rows-1 gap-2 text-2xl justify-center lg:px-10 py-2">
+          <div className="grid grid-cols-2 gap-8">
+    <div>
+        <strong>Organiser</strong><br />
+        Tanvi Malode<br />
+        +91 90967 79472
+    </div>
+    <div className="text-left">
+        <strong>Co-organiser</strong><br />
+        Abhijeet Singh<br />
+        +91 85048 27156
+    </div>
+</div>
+          <div className="mt-5px">
             <Link href="mailto:tedxvnit@vnit.ac.in" className="ml-2">
               tedxvnit@vnit.ac.in
             </Link>
@@ -58,6 +68,7 @@ const Contact = () => {
                 LinkedIn
               </div>
             </Link>
+            </div>
           </div>
         </div>
         <div className="col-span-2 md:col-span-1">

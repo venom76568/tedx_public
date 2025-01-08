@@ -341,10 +341,14 @@ const Teams = () => {
 
             <div className="flex flex-wrap justify-center gap-8 mx-auto w-full max-w-screen-xl">
               {members.map((member, index) => (
+
+                
+
                 <div
-                  className="flex justify-center w-full md:w-1/2 lg:w-1/3 xl:w-1/4"
+                  className="flex justify-center w-full md:w-2/5 lg:w-1/3 xl:w-1/4"
                   key={index}
                 >
+
                   <TeamMemberCard member={member} />
                 </div>
               ))}
