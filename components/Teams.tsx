@@ -10,7 +10,7 @@
 // export default Teams;
  
 import React, { useMemo } from "react";
-import { FaPhone, FaEnvelope, FaLinkedin } from "react-icons/fa"; // Import icons from react-icons
+import { FaPhone, FaEnvelope, FaLinkedin } from "react-icons/fa";  
  
 interface TeamMember {
   name: string;
