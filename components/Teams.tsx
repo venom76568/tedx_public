@@ -11,7 +11,7 @@
 
 import React, { useMemo } from "react";
 import { FaPhone, FaEnvelope, FaLinkedin } from "react-icons/fa"; // Import icons from react-icons
-
+ 
 interface TeamMember {
   name: string;
   photo?: string;

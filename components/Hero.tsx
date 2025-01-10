@@ -16,7 +16,7 @@ const Hero = () => {
           )}
         >
           <span className="text-white">
-            9<sup>th</sup>
+            7 <sup>th</sup>
           </span>
           <span className="text-red-600">{} February</span>
         </h1>
@@ -31,3 +31,5 @@ const Hero = () => {
 };
 
 export default Hero;
+ 
+

@@ -6,21 +6,21 @@ import Link from "next/link";
 const Contact = () => {
   return (
     <div id="contact">
-      <div className="grid grid-cols-2 lg:grid-cols-3 space-y-10 md:space-x-10 lg:space-y-0 lg:space-x-5 items-center p-10">
+      <div className="grid grid-cols-2 lg:grid-cols-3 space-y-10 md:space-x-10 lg:space-y-0 lg:space-x-5 items-center p-2 py-3">
         <div className="col-span-2 md:col-span-1 flex flex-col gap-7">
           <Image src={logo} alt="logo" className="self-center" />
           <div className="text-4xl font-black self-center">Contact Us</div>
-          <div className="grid grid-rows-1 gap-2 text-2xl justify-center lg:px-10 py-2">
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-rows-1 gap-2 text-2xl justify-center  py-2">
+          <div className="grid grid-cols-2 gap-0">
     <div>
         <strong>Organiser</strong><br />
         Tanvi Malode<br />
-        +91 90967 79472
+        9096779472
     </div>
     <div className="text-left">
         <strong>Co-organiser</strong><br />
         Abhijeet Singh<br />
-        +91 85048 27156
+        8504827156
     </div>
 </div>
           <div className="mt-5px">
@@ -79,6 +79,7 @@ const Contact = () => {
               <Link href="https://www.ted.com/about/programs-initiatives/tedx-program">
                 TEDx
               </Link>
+              <Link href="https://www.ted.com/tedx/events/61158">TEDxVNIT</Link>
             </div>
           </div>
         </div>
