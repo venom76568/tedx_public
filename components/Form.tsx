@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { Toast } from "./utils/Notification";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+
 const work_sans = Work_Sans({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -20,6 +21,12 @@ export const SUBMIT_FORM = gql`
       data {
         id
         name
+        email
+        phone
+        affiliation
+        college
+        id_type
+        others
       }
     }
   }
@@ -50,7 +57,7 @@ const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 const Form = () => {
   const router = useRouter();
   const toastID = "formSubmit";
-  const queryPoint = "https://tedx-backend-6x4f.onrender.com";
+  const queryPoint = "https://tedx-backend-6x4f.onrender.com/graphql"; // Update this URL if needed
   const [form, setForm] = React.useState(initForm);
 
   const mutation = useMutation({
@@ -79,18 +86,10 @@ const Form = () => {
         theme: "colored",
       });
       const code = resp.createForm.code;
-      if (code == 201) {
+      if (code === 200) {
         await delay(1000);
         toast.update(toastID, {
           render: "Registration Successful",
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
           type: "success",
         });
         setForm(initForm);
@@ -99,34 +98,17 @@ const Form = () => {
       } else {
         toast.update(toastID, {
           render: "Registration Failed",
-          isLoading: false,
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
           type: "error",
         });
       }
     } catch (error) {
       toast.update(toastID, {
         render: "Registration Failed",
-        isLoading: false,
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
         type: "error",
       });
+    } finally {
+      toast.dismiss(toastID);
     }
-    toast.dismiss(toastID);
   };
 
   const handleChange = (
