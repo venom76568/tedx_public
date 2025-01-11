@@ -119,15 +119,15 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-import image1 from "../public/AlbumPhotos/Image1.jpg";
-import image2 from "../public/AlbumPhotos/Image2.jpg";
-import image3 from "../public/AlbumPhotos/Image3.jpg";
-import image4 from "../public/AlbumPhotos/Image4.jpg";
-import image5 from "../public/AlbumPhotos/Image5.jpg";
-import image6 from "../public/AlbumPhotos/Image6.jpg";
-import image7 from "../public/AlbumPhotos/Image7.jpg";
-import image8 from "../public/AlbumPhotos/Image8.jpg";
-import image9 from "../public/AlbumPhotos/Image9.jpg";
+import image1 from "/AlbumPhotos/Image1.jpg";
+import image2 from "AlbumPhotos/Image2.jpg";
+import image3 from "/AlbumPhotos/Image3.jpg";
+import image4 from "/AlbumPhotos/Image4.jpg";
+import image5 from "/AlbumPhotos/Image5.jpg";
+import image6 from "/AlbumPhotos/Image6.jpg";
+import image7 from "/AlbumPhotos/Image7.jpg";
+import image8 from "/AlbumPhotos/Image8.jpg";
+import image9 from "/AlbumPhotos/Image9.jpg";
 
 const Gallery = () => {
   const images = [
