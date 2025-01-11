@@ -126,6 +126,8 @@ import image4 from "../public/AlbumPhotos/Image4.jpg";
 import image5 from "../public/AlbumPhotos/Image5.jpg";
 import image6 from "../public/AlbumPhotos/Image6.jpg";
 import image7 from "../public/AlbumPhotos/Image7.jpg";
+import image8 from "../public/AlbumPhotos/Image8.jpg";
+import image9 from "../public/AlbumPhotos/Image9.jpg";
 
 const Gallery = () => {
   const images = [
@@ -136,6 +138,8 @@ const Gallery = () => {
     { src: image5, alt: "Image 5" },
     { src: image6, alt: "Image 6" },
     { src: image7, alt: "Image 7" },
+    { src: image8, alt: "Image 8" },
+    { src: image9, alt: "Image 9" }
   ];
 
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
