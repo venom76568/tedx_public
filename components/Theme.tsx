@@ -15,27 +15,19 @@ const Theme = () => {
       <div className="gap-10 text-center justify-center items-center p-10">
         {/* <Image src={theme} alt="Theme" width={400} className="col-span-2 animate-vertical rounded-full" /> */}
         <div className="flex-wrap flex-col gap-5 col-span-3 justify-center">
-          <div className="text-[#EB0028] text-5xl xl:text-7xl font-black">
+          <div className="text-[#EB0028] text-5xl xl:text-7xl font-black ">
             Theme
           </div>
           <div
             className={classNames(
-              "text2xl xl:text-3xl py-5 whitespace-normal",
+              "text2xl xl:text-3xl py-5 whitespace-normal text-justify",
               titillium.className
             )}
-          >
-            The{" "}
-            <span className="font-bold text-[#EB0028]">
-              &quot;Kaleidovision: merging discrete perspectives&quot;
+          > 
+            <span className="font-bold text-[#EB0028] ">
+              &quot;Waves of Wisdom:&quot;
             </span>{" "}
-            encapsulates the notion of integrating disparate viewpoints into a
-            unified whole, akin to the harmonious blending of colors and
-            patterns within a kaleidoscope. <br />
-            In the context of a TEDx event hosted at VNIT, this theme
-            underscores the imperative of embracing diversity of thought and
-            experience. It champions the exploration of how the convergence of
-            varied perspectives can catalyze innovation, foster collaboration,
-            and deepen comprehension.
+            Exploring the Idea Sphere encapsulates the journey of transformative ideas that ripple through art, education, research, and technology, shaping the world around us. This theme celebrates the power of innovation and thought-provoking perspectives that inspire change, connect diverse disciplines, and spark curiosity. It emphasizes the exchange of knowledge and creativity, creating waves that challenge conventions and empower individuals to explore uncharted territories of wisdom and imagination.
           </div>
         </div>
       </div>
