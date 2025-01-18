@@ -1,14 +1,14 @@
 'use client';
-import React from "react";
-import { Work_Sans } from "next/font/google";
+import React from "react"; 
 import Header from "@/components/Header";
 import Contact from "@/components/Contact";
+import { Work_Sans } from 'next/font/google';
 const work_sans = Work_Sans({
   subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
-})
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+});
 
-const Success = () => {
+const page = () => {
   return (
     <div className={work_sans.className}>
       <Header />
@@ -28,4 +28,4 @@ const Success = () => {
 }
 
 
-export default Success;
+export default page;
