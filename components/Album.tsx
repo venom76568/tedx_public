@@ -1,11 +1,29 @@
-// // const Album = () => {
-// //   return (
-// //     <div className="h-full flex flex-col justify-center items-center gap-10 bg-black">
-// //       <span className="text-5xl text-white">Gallery</span>
-// //       <span className="text-3xl text-red-600">Coming soon</span>
-// //     </div>
-// //   )
-// // }
+// // // const Album = () => {
+// // //   return (
+// // //     <div className="h-full flex flex-col justify-center items-center gap-10 bg-black">
+// // //       <span className="text-5xl text-white">Gallery</span>
+// // //       <span className="text-3xl text-red-600">Coming soon</span>
+// // //     </div>
+// // //   )
+// // // }
+
+
+// // // export default Album; 
+
+
+
+
+
+// import React, { useState, useEffect } from "react";
+// import Image from "next/image";
+ 
+// import image1 from "../public/AlbumPhotos/Image1.png";
+// import image2 from "../public/AlbumPhotos/Image2.png";
+// import image3 from "../public/AlbumPhotos/Image3.png";
+// import image4 from "../public/AlbumPhotos/Image4.png";
+// import image5 from "../public/AlbumPhotos/Image5.png";
+// import image6 from "../public/AlbumPhotos/Image6.png";
+// import image7 from "../public/AlbumPhotos/Image7.png";
 
 // // export default Album;
 
@@ -19,6 +37,7 @@
 // import image5 from "../public/AlbumPhotos/Image5.jpg";
 // import image6 from "../public/AlbumPhotos/Image6.jpg";
 // import image7 from "../public/AlbumPhotos/Image7.jpg";
+
 
 // const Gallery = () => {
 //   const images = [
