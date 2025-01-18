@@ -7,6 +7,7 @@
 // // //   )
 // // // }
 
+
 // // // export default Album; 
 
 
@@ -24,6 +25,20 @@
 // import image6 from "../public/AlbumPhotos/Image6.png";
 // import image7 from "../public/AlbumPhotos/Image7.png";
 
+// // export default Album;
+
+// import React, { useState, useEffect } from "react";
+// import Image from "next/image";
+
+// import image1 from "../public/AlbumPhotos/Image1.jpg";
+// import image2 from "../public/AlbumPhotos/Image2.jpg";
+// import image3 from "../public/AlbumPhotos/Image3.jpg";
+// import image4 from "../public/AlbumPhotos/Image4.jpg";
+// import image5 from "../public/AlbumPhotos/Image5.jpg";
+// import image6 from "../public/AlbumPhotos/Image6.jpg";
+// import image7 from "../public/AlbumPhotos/Image7.jpg";
+
+
 // const Gallery = () => {
 //   const images = [
 //     { src: image1, alt: "Image 1" },
@@ -36,24 +51,24 @@
 //   ];
 
 //   const [currentIndex, setCurrentIndex] = useState(0);
- 
+
 //   const nextImage = () => {
 //     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
 //   };
-  
+
 //   const prevImage = () => {
 //     setCurrentIndex(
 //       (prevIndex) => (prevIndex - 1 + images.length) % images.length
 //     );
 //   };
- 
+
 //   const setImageFromThumbnail = (index: number) => {
 //     setCurrentIndex(index);
 //   };
- 
+
 //   useEffect(() => {
-//     const intervalId = setInterval(nextImage, 3000); 
- 
+//     const intervalId = setInterval(nextImage, 3000);
+
 //     return () => clearInterval(intervalId);
 //   }, []);
 
@@ -96,8 +111,8 @@
 //             onClick={() => setImageFromThumbnail(index)}
 //             className={`relative w-24 h-16 rounded-lg overflow-hidden cursor-pointer border-2 ${
 //               currentIndex === index
-//                 ? "border-red-500"  
-//                 : "border-white"  
+//                 ? "border-red-500"
+//                 : "border-white"
 //             }`}
 //           >
 //             <Image
@@ -114,7 +129,6 @@
 // };
 
 // export default Gallery;
-
 
 import React, { useState } from "react";
 import Image from "next/image";
@@ -147,7 +161,7 @@ const Gallery = () => {
   return (
     <div className="flex flex-col items-center justify-center bg-black min-h-screen px-4 sm:px-8">
       <h1 className="text-white text-5xl font-bold mb-6">Gallery</h1>
- 
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full max-w-7xl px-4 py-4">
         {images.map((image, index) => (
           <div
