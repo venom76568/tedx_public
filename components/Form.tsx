@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { Work_Sans } from 'next/font/google';
-import { useRouter } from 'next/navigation';
-import { toast, Toaster } from 'react-hot-toast';  
-import { gql, request } from 'graphql-request';
-import { useMutation } from '@tanstack/react-query';
- 
+import React, { useState } from "react";
+import { Work_Sans } from "next/font/google";
+import { useRouter } from "next/navigation";
+import { toast, Toaster } from "react-hot-toast";
+import { gql, request } from "graphql-request";
+import { useMutation } from "@tanstack/react-query";
+
 const work_sans = Work_Sans({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
- 
+
 const SUBMIT_FORM = gql`
   mutation submitForm($formInput: FormInput!) {
     createForm(createFormInput: $formInput) {
@@ -24,7 +24,7 @@ const SUBMIT_FORM = gql`
     }
   }
 `;
- 
+
 type RegisterForm = {
   name: string;
   email: string;
@@ -32,61 +32,61 @@ type RegisterForm = {
   affiliation: string;
   college?: string;
   id_type: string;
-  others?: string;
+  others: string;
 };
- 
+
 const initForm: RegisterForm = {
-  name: '',
-  email: '',
-  phone: '',
-  affiliation: '',
-  college: '',
-  id_type: '',
-  others: '',
+  name: "",
+  email: "",
+  phone: "",
+  affiliation: "",
+  college: "",
+  id_type: "",
+  others: "",
 };
- 
+const endpoint = "https://tedx-backend-6x4f.onrender.com/";
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 const Form = () => {
   const router = useRouter();
   const [form, setForm] = useState(initForm);
- 
+
   const mutation = useMutation({
-    mutationKey: ['tedxForm'],
+    mutationKey: ["tedxForm"],
     mutationFn: async (form: RegisterForm) => {
-      const data = await request('https://tedx-backend-1.onrender.com/', SUBMIT_FORM, {
+      const data = await request(endpoint, SUBMIT_FORM, {
         formInput: form,
       });
       return data;
     },
   });
- 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const toastId = toast.loading('Submitting form...');
-  
+    const toastId = toast.loading("Submitting form...");
+
     try {
       const response: any = await mutation.mutateAsync(form);
-      console.log(response);   
-  
+      console.log(response);
+
       const { code } = response.createForm;
-  
+
       if (code === 200) {
-        toast.success('Registration Successful!', {
+        toast.success("Registration Successful!", {
           id: toastId,
           duration: 3000,
         });
-        setForm(initForm);  
-        router.push('/success');  
+        setForm(initForm);
+        router.push("/success");
       } else {
-        toast.error('Registration Failed. Please try again.', {
+        toast.error("Registration Failed. Please try again.", {
           id: toastId,
           duration: 3000,
         });
       }
     } catch (error: any) {
-      console.error(error);   
-      toast.error(`Error: ${error?.message || 'An unknown error occurred.'}`, {
+      console.error(error);
+      toast.error(`Error: ${error?.message || "An unknown error occurred."}`, {
         id: toastId,
         duration: 3000,
       });
@@ -94,8 +94,7 @@ const Form = () => {
       toast.dismiss(toastId);
     }
   };
-  
- 
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -103,13 +102,14 @@ const Form = () => {
     setForm((prevForm) => ({
       ...prevForm,
       [name]: value,
-      ...(name === 'affiliation' && value === 'vnit' ? { id_type: 'vnit' } : {}),
+      ...(name === "affiliation" && value === "vnit"
+        ? { id_type: "vnit" }
+        : {}),
     }));
   };
 
   return (
     <div className="min-h-screen flex justify-center items-start md:items-center bg-gray-800 bg-[url('/assets/background.png')] bg-cover bg-center bg-blend-hard-light">
-     
       <Toaster />
 
       <form
@@ -117,7 +117,6 @@ const Form = () => {
         className={`w-full max-w-2xl p-6 ${work_sans.className}`}
       >
         <div className="grid grid-cols-6 gap-8">
-           
           <InputField
             id="name"
             name="name"
@@ -128,7 +127,6 @@ const Form = () => {
             required
           />
 
-           
           <InputField
             id="email"
             name="email"
@@ -139,7 +137,7 @@ const Form = () => {
             required
             type="email"
           />
- 
+
           <InputField
             id="phone"
             name="phone"
@@ -150,7 +148,7 @@ const Form = () => {
             required
             maxLength={10}
           />
- 
+
           <SelectField
             id="affiliation"
             name="affiliation"
@@ -158,13 +156,13 @@ const Form = () => {
             onChange={handleChange}
             label="Affiliation"
             options={[
-              { value: '', label: 'Select Affiliation', hidden: true },
-              { value: 'non', label: 'Non-VNIT' },
-              { value: 'vnit', label: 'VNIT' },
+              { value: "", label: "Select Affiliation", hidden: true },
+              { value: "non", label: "Non-VNIT" },
+              { value: "vnit", label: "VNIT" },
             ]}
           />
- 
-          {form.affiliation === 'non' && (
+
+          {form.affiliation === "non" && (
             <InputField
               id="college"
               name="college"
@@ -175,7 +173,7 @@ const Form = () => {
               required
             />
           )}
- 
+
           <SelectField
             id="id_type"
             name="id_type"
@@ -183,17 +181,17 @@ const Form = () => {
             onChange={handleChange}
             label="ID Type"
             options={[
-              { value: '', label: 'Select ID Type', hidden: true },
-              { value: 'vnit', label: 'VNIT Student ID' },
-              { value: 'aadhar', label: 'Aadhar Card' },
-              { value: 'pan', label: 'PAN Card' },
-              { value: 'driving', label: 'Driving License' },
-              { value: 'other', label: 'Others' },
+              { value: "", label: "Select ID Type", hidden: true },
+              { value: "vnit", label: "VNIT Student ID" },
+              { value: "aadhar", label: "Aadhar Card" },
+              { value: "pan", label: "PAN Card" },
+              { value: "driving", label: "Driving License" },
+              { value: "other", label: "Others" },
             ]}
-            disabled={form.affiliation === 'vnit'}
+            disabled={form.affiliation === "vnit"}
           />
- 
-          {form.id_type === 'other' && (
+
+          {form.id_type === "other" && (
             <InputField
               id="others"
               name="others"
@@ -203,7 +201,7 @@ const Form = () => {
               placeholder="Specify other ID"
             />
           )}
- 
+
           <div className="col-span-6 flex justify-center items-center">
             <button
               type="submit"
@@ -217,7 +215,7 @@ const Form = () => {
     </div>
   );
 };
- 
+
 const InputField = ({
   id,
   name,
@@ -226,7 +224,7 @@ const InputField = ({
   label,
   placeholder,
   required = false,
-  type = 'text',
+  type = "text",
   maxLength,
 }: any) => (
   <div className="col-span-6">
@@ -246,7 +244,7 @@ const InputField = ({
     />
   </div>
 );
- 
+
 const SelectField = ({
   id,
   name,
@@ -269,11 +267,7 @@ const SelectField = ({
       className="w-full bg-[#D9D9D9] p-4 rounded-md"
     >
       {options.map((option: any) => (
-        <option
-          key={option.value}
-          value={option.value}
-          hidden={option.hidden}
-        >
+        <option key={option.value} value={option.value} hidden={option.hidden}>
           {option.label}
         </option>
       ))}
