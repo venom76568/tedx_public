@@ -45,37 +45,37 @@ const Theme = () => {
           <span className="font-bold text-[#EB0028]">
             &quot;Waves of Wisdom:&quot;
           </span>{" "}
-            Exploring the Idea Sphere encapsulates the journey of transformative
-            ideas that ripple through art, education, research, and technology,
-            shaping the world around us. This theme celebrates the power of
-            innovation and thought-provoking perspectives that inspire change,
-            connect diverse disciplines, and spark curiosity. It emphasizes the
-            exchange of knowledge and creativity, creating waves that challenge
-            conventions and empower individuals to explore uncharted territories
-            of wisdom and imagination.
+          Exploring the Idea Sphere encapsulates the journey of transformative
+          ideas that ripple through art, education, research, and technology,
+          shaping the world around us. This theme celebrates the power of
+          innovation and thought-provoking perspectives that inspire change,
+          connect diverse disciplines, and spark curiosity. It emphasizes the
+          exchange of knowledge and creativity, creating waves that challenge
+          conventions and empower individuals to explore uncharted territories
+          of wisdom and imagination.
         </div>
       </div>
 
       {/* Bottom Section */}
       <div className="flex flex-col lg:flex-row justify-between items-center gap-10 p-10">
         {/* Left: Text */}
-        <div className="text-2xl xl:text-3xl w-full lg:w-1/2 text-white text-justify">
+        <div className="text-1xl xl:text-2xl w-full lg:w-1/2 text-white text-justify">
           <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#EB0028] font-black mb-6 p-4 bg-black rounded-full shadow-md w-[70%] mx-auto border-b-4 border-white min-w-[300px] text-center">
             Past Glimpses:
-            <div className="text-2xl xl:text-3xl">"The Third Side of the Coin"</div>
-          </div >
-           Every coin has two sides—heads and tails—symbolizing binary
-            perspectives, choices, or opposites. But what about the unseen
-            third side—the edge that connects both? This theme challenges
-            conventional thinking and encourages exploring perspectives beyond
-            the obvious. It represents nuance, balance, and the overlooked
-            middle ground where true innovation and wisdom emerge.{" "}
+            <div className="text-2xl xl:text-3xl">&quot;The Third Side of the Coin&quot;</div>
+          </div>
+          Every coin has two sides—heads and tails—symbolizing binary
+          perspectives, choices, or opposites. But what about the unseen
+          third side—the edge that connects both? This theme challenges
+          conventional thinking and encourages exploring perspectives beyond
+          the obvious. It represents nuance, balance, and the overlooked
+          middle ground where true innovation and wisdom emerge.{" "}
           <span className="font-bold text-[#EB0028]">
-            "The Third Side of the Coin"
+            &quot;The Third Side of the Coin&quot;
           </span>{" "}
-            invites speakers and audiences to uncover hidden possibilities,
-            break binary constraints, and embrace multidimensional thinking in
-            a world that often sees things in black and white.
+          invites speakers and audiences to uncover hidden possibilities,
+          break binary constraints, and embrace multidimensional thinking in
+          a world that often sees things in black and white.
         </div>
 
         {/* Right: Image Carousel */}
