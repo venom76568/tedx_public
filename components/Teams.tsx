@@ -8,7 +8,7 @@
 // }
 
 // export default Teams;
-
+import Image from 'next/image';
 import React, { useMemo } from "react";
 import { FaPhone, FaEnvelope, FaLinkedin } from "react-icons/fa"; // Import icons from react-icons
  
@@ -280,11 +280,19 @@ const TeamMemberCard = ({ member }: { member: TeamMember }) => (
   <div className="flex flex-col items-center gap-6 bg-gradient-to-b from-red-600 to-black p-6 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300">
     <div className="relative w-48 h-48 rounded-full bg-black flex items-center justify-center">
       {member.photo ? (
-        <img
-          src={member.photo}
-          alt={member.name}
-          className="w-44 h-44 object-cover rounded-full border-4 border-white"
-        />
+        <Image
+        src={member.photo}
+        alt={member.name}
+        width={176}
+        height={176}
+        style={{
+          objectFit: 'cover',
+          borderRadius: '50%',
+          border: '4px solid white',
+          maxWidth: '90%',
+          height: '90%'
+        }}
+      />      
       ) : (
         <div className="w-44 h-44 bg-gray-200 rounded-full border-4 border-white flex items-center justify-center text-center text-xl text-white">
           {member.name.charAt(0)}

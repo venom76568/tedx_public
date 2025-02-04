@@ -1,116 +1,97 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import Image from "next/image";
+import React, { useState, useEffect } from "react";
+import Image from "next/image"; // Import Next.js Image component
 
-import giri from "../public/assets/giri.jpg";
-import nagi from "../public/assets/nagi.jpg";
-import tridha from "../public/assets/tridha.png";
-
-import jimmny_card from "../public/assets/jimmy_card.png";
-import parimal_card from "../public/assets/parimal_card.png";
-import tridha_card from "../public/assets/tridha_card.png";
-import React from "react";
+const speakersData = [
+  { name: "Speaker 1", bio: "Ketaki Mateygaonkar is a renowned Indian actress, singer, and songwriter primarily known for her contributions to Marathi cinema and music. She began her career as a playback singer before transitioning into acting, gaining recognition for her exceptional talent and versatility.", image: "/Speakers/Speaker 1.jpg" },
+  { name: "Speaker 2", bio: "Padmashri Prahlada Rama Rao is an Indian missile scientist and former director of Defence Research and Development Laboratory (DRDL), the largest of the Defence Research and Development Organization (DRDO) laboratories in India, known for his contributions to the Indian space programme. He was honoured by the Government of India in 2015 with the Padma Shri, the fourth-highest Indian civilian award.", image: "/Speakers/Speaker 2.jpg" },
+  { name: "Speaker 3", bio: "Dania Khan, a trailblazing individual with exceptional academic achievements, award-winning research, and global accolades in debate, literature, and community service. A published author and polyglot, she is passionate about economic affairs, global politics, and empowering communities.", image: "/Speakers/Speaker 3.jpg" },
+  { name: "Speaker 4", bio: "Dr. Gajendra Purohit is a renowned Indian mathematician, educator, and YouTuber known for his contributions to higher mathematics and his efforts to make advanced mathematical concepts accessible to students.", image: "/Speakers/Speaker 4.jpg" },
+  { name: "Speaker 5", bio: "Harshit Surana, the visionary founder of The Robot Restaurant - TYH and Biryani Nawaabs, is redefining the Indian hospitality industry by integrating robotics with dining.", image: "/Speakers/Speaker 5.jpg" },
+];
 
 const Speakers = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showBio, setShowBio] = useState(false);
+
+  const nextSpeaker = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % speakersData.length);
+  };
+
+  const prevSpeaker = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? speakersData.length - 1 : prevIndex - 1
+    );
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!showBio) {
+        nextSpeaker();
+      }
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [showBio]);
+
   return (
     <div
       id="speakers"
-      className="h-full flex flex-col justify-center items-center gap-10 bg-black"
+      className="min-h-screen flex flex-col justify-center items-center gap-10 bg-black py-10 px-4"
     >
-      <span className="text-5xl text-white">Speakers</span>
-      <span className="text-3xl text-red-600">Coming soon</span>
+      <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center text-[#ff2020] font-black mb-12 p-4 bg-white rounded-full shadow-md w-[70%] mx-auto border-b-4 border-[#EB0028] min-w-[300px] sm:min-w-[300px] lg:min-w-[400px]">
+        Speakers
+      </div>
 
-      {/* <Carousel className="hidden lg:block h-full mx-4 "
-        showIndicators={false}
-        showStatus={false}
-        showThumbs={false}
-        autoPlay
-        infiniteLoop
-        useKeyboardArrows
-        renderArrowPrev={(clickHandler, hasPrev) => {
-          return (
-            <div
-              className={`${hasPrev ? "absolute" : "hidden"
-                } top-0 bottom-0 left-0 flex justify-center items-center p-3 cursor-pointer z-20`}
-              onClick={clickHandler}
-            >
-              <svg width="27" height="47" viewBox="0 0 27 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20.9218 45.1126L0.912462 25.1626C0.674962 24.9251 0.507129 24.6678 0.408963 24.3907C0.309213 24.1136 0.259338 23.8167 0.259338 23.5001C0.259338 23.1834 0.309213 22.8865 0.408963 22.6094C0.507129 22.3324 0.674962 22.0751 0.912462 21.8376L20.9218 1.8282C21.476 1.27403 22.1687 0.996948 23 0.996948C23.8312 0.996948 24.5437 1.29382 25.1375 1.88757C25.7312 2.48132 26.0281 3.17403 26.0281 3.9657C26.0281 4.75736 25.7312 5.45007 25.1375 6.04382L7.68121 23.5001L25.1375 40.9563C25.6916 41.5105 25.9687 42.1929 25.9687 43.0036C25.9687 43.8158 25.6718 44.5188 25.0781 45.1126C24.4843 45.7063 23.7916 46.0032 23 46.0032C22.2083 46.0032 21.5156 45.7063 20.9218 45.1126Z" fill="white" />
-              </svg>
-            </div>
-          );
-        }}
-        renderArrowNext={(clickHandler, hasNext) => {
-          return (
-            <div
-              className={`${hasNext ? "absolute" : "hidden"
-                } top-0 bottom-0 right-0 flex justify-center items-center p-3 cursor-pointer z-20`}
-              onClick={clickHandler}
-            >
-              <svg width="26" height="47" viewBox="0 0 26 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5.1063 45.1126L25.1157 25.1626C25.3532 24.9251 25.521 24.6678 25.6192 24.3907C25.7189 24.1136 25.7688 23.8167 25.7688 23.5001C25.7688 23.1834 25.7189 22.8865 25.6192 22.6094C25.521 22.3324 25.3532 22.0751 25.1157 21.8376L5.1063 1.8282C4.55213 1.27403 3.85942 0.996948 3.02817 0.996948C2.19692 0.996948 1.48443 1.29382 0.890675 1.88757C0.296925 2.48132 5.01871e-05 3.17403 5.01871e-05 3.9657C5.01871e-05 4.75736 0.296925 5.45007 0.890675 6.04382L18.3469 23.5001L0.890675 40.9563C0.336509 41.5105 0.0594243 42.1929 0.0594243 43.0036C0.0594243 43.8158 0.356299 44.5188 0.950049 45.1126C1.5438 45.7063 2.23651 46.0032 3.02817 46.0032C3.81984 46.0032 4.51255 45.7063 5.1063 45.1126Z" fill="white" />
-              </svg>
+      {/* Speaker Card Section */}
+      <div className="relative w-full max-w-3xl aspect-video bg-black min-h-[300px] border-2 border-white rounded-lg overflow-hidden shadow-md">
+        <div className="relative w-full h-full flex flex-col justify-center items-center">
+          {/* Speaker Image with Blur Effect */}
+          <Image
+            src={speakersData[currentIndex].image}
+            alt={speakersData[currentIndex].name}
+            layout="fill"
+            objectFit="contain"
+            className={`rounded-lg shadow-md ${showBio ? 'blur-sm' : ''}`}
+          />
 
-            </div>
-          );
-        }}
-      >
-        <div className="px-10 w-[50%] m-auto">
-          <Image  src={giri} alt="giri" />
-        </div>
-        <div className="px-10 w-[50%] m-auto">
-          <Image src={nagi} alt="nagi" />
-        </div>
-        {/* <div className="px-10">
-          <Image src={tridha} alt="Tridha" />
-        </div> */}
-      {/* </Carousel>
-      <Carousel
-        className="lg:hidden"
-        showIndicators={false}
-        showStatus={false}
-        autoPlay
-        showThumbs={false}
-        infiniteLoop
-        useKeyboardArrows
-        renderArrowPrev={(clickHandler, hasPrev) => {
-          return (
-            <div
-              className={`${hasPrev ? "absolute" : "hidden"
-                } top-0 bottom-0 left-0 flex justify-center items-center p-3 cursor-pointer z-20`}
-              onClick={clickHandler}
-            >
-              <svg width="27" height="47" viewBox="0 0 27 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20.9218 45.1126L0.912462 25.1626C0.674962 24.9251 0.507129 24.6678 0.408963 24.3907C0.309213 24.1136 0.259338 23.8167 0.259338 23.5001C0.259338 23.1834 0.309213 22.8865 0.408963 22.6094C0.507129 22.3324 0.674962 22.0751 0.912462 21.8376L20.9218 1.8282C21.476 1.27403 22.1687 0.996948 23 0.996948C23.8312 0.996948 24.5437 1.29382 25.1375 1.88757C25.7312 2.48132 26.0281 3.17403 26.0281 3.9657C26.0281 4.75736 25.7312 5.45007 25.1375 6.04382L7.68121 23.5001L25.1375 40.9563C25.6916 41.5105 25.9687 42.1929 25.9687 43.0036C25.9687 43.8158 25.6718 44.5188 25.0781 45.1126C24.4843 45.7063 23.7916 46.0032 23 46.0032C22.2083 46.0032 21.5156 45.7063 20.9218 45.1126Z" fill="white" />
-              </svg>
-            </div>
-          );
-        }}
-        renderArrowNext={(clickHandler, hasNext) => {
-          return (
-            <div
-              className={`${hasNext ? "absolute" : "hidden"
-                } top-0 bottom-0 right-0 flex justify-center items-center p-3 cursor-pointer z-20`}
-              onClick={clickHandler}
-            >
-              <svg width="26" height="47" viewBox="0 0 26 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5.1063 45.1126L25.1157 25.1626C25.3532 24.9251 25.521 24.6678 25.6192 24.3907C25.7189 24.1136 25.7688 23.8167 25.7688 23.5001C25.7688 23.1834 25.7189 22.8865 25.6192 22.6094C25.521 22.3324 25.3532 22.0751 25.1157 21.8376L5.1063 1.8282C4.55213 1.27403 3.85942 0.996948 3.02817 0.996948C2.19692 0.996948 1.48443 1.29382 0.890675 1.88757C0.296925 2.48132 5.01871e-05 3.17403 5.01871e-05 3.9657C5.01871e-05 4.75736 0.296925 5.45007 0.890675 6.04382L18.3469 23.5001L0.890675 40.9563C0.336509 41.5105 0.0594243 42.1929 0.0594243 43.0036C0.0594243 43.8158 0.356299 44.5188 0.950049 45.1126C1.5438 45.7063 2.23651 46.0032 3.02817 46.0032C3.81984 46.0032 4.51255 45.7063 5.1063 45.1126Z" fill="white" />
-              </svg>
+          {/* Show Bio Button */}
+          <button
+            onClick={() => setShowBio(!showBio)}
+            className="absolute top-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 z-10 border-2 border-red"
+          >
+            {showBio ? "Hide Bio" : "Show Bio"}
+          </button>
 
+          {/* Speaker Bio (if shown) */}
+          {showBio && (
+            <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-70 text-white p-5 rounded-lg shadow-md flex items-center justify-center z-0 overflow-auto max-h-[300px] mt-10">
+              <div className="overflow-y-auto max-h-full">
+                <p className="text-lg text-justify whitespace-pre-wrap break-words">
+                  {speakersData[currentIndex].bio}
+                </p>
+              </div>
             </div>
-          );
-        }}
-      >
-        <div>
-          <Image src={giri} alt="Jimmy" />
+          )}
         </div>
-        <div>
-          <Image src={nagi} alt="Parimal" />
-        </div>
-        {/* <div>
-          <Image src={tridha_card} alt="Tridha" />
-        </div> */}
-      {/* </Carousel> */}  
+      </div>
+
+      {/* Thumbnail Section */}
+      <div className="flex gap-2 mt-4 overflow-x-auto w-full max-w-4xl px-4 justify-center">
+        {speakersData.map((speaker, index) => (
+          <div
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`relative w-24 h-16 rounded-lg overflow-hidden cursor-pointer border-2 ${currentIndex === index ? "border-red-500" : "border-white"}`}
+          >
+            <Image
+              src={speaker.image}
+              alt={speaker.name}
+              width={96} // Adjust width based on the layout
+              height={64} // Adjust height based on the layout
+              objectFit="cover"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
