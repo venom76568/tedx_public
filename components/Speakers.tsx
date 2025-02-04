@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Image from "next/image"; // Import Next.js Image component
 
 const speakersData = [
   { name: "Speaker 1", bio: "Ketaki Mateygaonkar is a renowned Indian actress, singer, and songwriter primarily known for her contributions to Marathi cinema and music. She began her career as a playback singer before transitioning into acting, gaining recognition for her exceptional talent and versatility.", image: "/Speakers/Speaker 1.jpg" },
@@ -12,19 +13,16 @@ const Speakers = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showBio, setShowBio] = useState(false);
 
-  // Function to go to the next speaker (card)
   const nextSpeaker = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % speakersData.length);
   };
 
-  // Function to go to the previous speaker (card)
   const prevSpeaker = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? speakersData.length - 1 : prevIndex - 1
     );
   };
 
-  // Auto-scroll every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       if (!showBio) {
@@ -40,24 +38,25 @@ const Speakers = () => {
       className="min-h-screen flex flex-col justify-center items-center gap-10 bg-black py-10 px-4"
     >
       <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center text-[#ff2020] font-black mb-12 p-4 bg-white rounded-full shadow-md w-[70%] mx-auto border-b-4 border-[#EB0028] min-w-[300px] sm:min-w-[300px] lg:min-w-[400px]">
-  Speakers
-</div>
+        Speakers
+      </div>
 
       {/* Speaker Card Section */}
       <div className="relative w-full max-w-3xl aspect-video bg-black min-h-[300px] border-2 border-white rounded-lg overflow-hidden shadow-md">
-        {/* Flex container for the card */}
-        <div className="relative w-full h-full flex flex-col justify-center items-center ">
+        <div className="relative w-full h-full flex flex-col justify-center items-center">
           {/* Speaker Image with Blur Effect */}
-          <img
+          <Image
             src={speakersData[currentIndex].image}
             alt={speakersData[currentIndex].name}
-            className={`w-full h-full object-contain rounded-lg shadow-md ${showBio ? 'blur-sm' : ''}`}
+            layout="fill"
+            objectFit="contain"
+            className={`rounded-lg shadow-md ${showBio ? 'blur-sm' : ''}`}
           />
 
           {/* Show Bio Button */}
           <button
             onClick={() => setShowBio(!showBio)}
-            className="absolute top-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 z-10 border-2 border-red "
+            className="absolute top-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 z-10 border-2 border-red"
           >
             {showBio ? "Hide Bio" : "Show Bio"}
           </button>
@@ -83,10 +82,12 @@ const Speakers = () => {
             onClick={() => setCurrentIndex(index)}
             className={`relative w-24 h-16 rounded-lg overflow-hidden cursor-pointer border-2 ${currentIndex === index ? "border-red-500" : "border-white"}`}
           >
-            <img
+            <Image
               src={speaker.image}
               alt={speaker.name}
-              className="w-full h-full object-cover"
+              width={96} // Adjust width based on the layout
+              height={64} // Adjust height based on the layout
+              objectFit="cover"
             />
           </div>
         ))}
